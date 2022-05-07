@@ -4,6 +4,7 @@ import androidx.lifecycle.*
 import androidx.compose.runtime.Composable
 import com.example.dip.Converter
 import com.example.dip.ValueProvider
+import kotlinx.coroutines.delay
 import java.time.LocalDateTime
 
 /**
@@ -19,5 +20,14 @@ class BerlinClockViewModel(
      * A [LiveData] that continuously emit a new [BerlinClockState].
      */
     val state : LiveData<BerlinClockState> = liveData {
+        while (true) {
+            val time = timeProvider.getValue()
+            emit(stateConverter.convert(time))
+            delay(STATE_EMIT_DELAY)
+        }
+    }
+
+    companion object {
+        private const val STATE_EMIT_DELAY = 500L
     }
 }
