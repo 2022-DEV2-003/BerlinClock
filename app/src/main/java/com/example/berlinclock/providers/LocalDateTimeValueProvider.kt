@@ -7,7 +7,8 @@ import java.time.LocalDateTime
  * A component capable of providing a instances of [LocalDateTime]
  */
 object LocalDateTimeValueProvider : ValueProvider<LocalDateTime> {
-    override fun getValue(): LocalDateTime {
-        TODO("Not yet implemented")
-    }
+
+    override fun getValue() = getLocalDateTime()
+
+    private fun getLocalDateTime(): LocalDateTime = LocalDateTime.now()
 }
