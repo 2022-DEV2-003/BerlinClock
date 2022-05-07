@@ -6,6 +6,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -16,6 +18,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.berlinclock.ui.theme.BerlinClockTheme
 
 /**
@@ -350,6 +353,17 @@ fun BerlinClock(
             )
         }
     }
+}
+
+/**
+ * Stateful BerlinClock [Composable].
+ * @param viewModel the [BerlinClockViewModel] to observe the [BerlinClockState] from.
+ */
+@Composable
+fun BerlinClock(viewModel: BerlinClockViewModel = viewModel(factory = BerlinClockViewModelFactory()))
+{
+    val state by viewModel.state.observeAsState(BerlinClockState())
+    BerlinClock(state)
 }
 
 @Preview(showBackground = true)

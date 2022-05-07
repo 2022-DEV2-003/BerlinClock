@@ -2,6 +2,8 @@ package com.example.berlinclock.ui
 
 import androidx.lifecycle.*
 import androidx.compose.runtime.Composable
+import com.example.berlinclock.converters.BerlinClockStateConverter
+import com.example.berlinclock.providers.LocalDateTimeValueProvider
 import com.example.dip.Converter
 import com.example.dip.ValueProvider
 import kotlinx.coroutines.delay
@@ -29,5 +31,17 @@ class BerlinClockViewModel(
 
     companion object {
         private const val STATE_EMIT_DELAY = 500L
+    }
+}
+
+/**
+ * A [ViewModel] Factory needed to inject the dependencies of [BerlinClockViewModel].
+ *
+ * shouldn't be needed with a Dependency Injection Framework (ie: Hilt/Dagger).
+ */
+class BerlinClockViewModelFactory: ViewModelProvider.Factory {
+    @Suppress("UNCHECKED_CAST")
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        return BerlinClockViewModel(LocalDateTimeValueProvider, BerlinClockStateConverter) as T
     }
 }
