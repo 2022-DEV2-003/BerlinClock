@@ -14,6 +14,7 @@ To build the app, you can use the build/run option in Android Studio, or build d
 
     git clone https://github.com/2022-DEV2-003/BerlinClock.git
     cd BerlinClock
+    export ANDROID_SDK_ROOT=<path_to_android_sdk>
     ./gradlew build
 ### Installing the app
     ./gradlew installDebug
