@@ -15,6 +15,8 @@ To build the app, you can use the build/run option in Android Studio, or build d
     git clone https://github.com/2022-DEV2-003/BerlinClock.git
     cd BerlinClock
     ./gradlew build
+### Installing the app
+    ./gradlew installDebug
 ### Running Unit Tests
     ./gradlew test
 HTML test result files: `app/build/reports/tests/` directory.
